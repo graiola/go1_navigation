@@ -30,6 +30,10 @@
         <remap from="/joint_states" to="/go1/joint_states"/>
     </node>
 
+    <!-- Activate rslidar driver -->
+    <include file="$(find rslidar_pointcloud)/launch/rs_lidar_16.launch">
+    </include>
+
     <!-- start navigation module -->
     <include file="$(find wolf_navigation_utils)/launch/wolf_navigation.launch">
         <arg name="robot_name" value="go1"/>
