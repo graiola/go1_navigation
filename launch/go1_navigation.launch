@@ -21,6 +21,12 @@
     <arg name="launch_controller" default="true" />
     <arg name="artifacts_mapping" default="false" />
 
+    <!-- Send the robot urdf to parameter server -->
+    <include file="$(find wolf_description_utils)/launch/upload.launch">
+        <arg name="sensors" value="true" />
+        <arg name="task_period" value="$(arg task_period)" />
+        <arg name="robot_name" value="go1" />
+    </include>
 
     <!-- Convert joint states to TF transforms for rviz, etc -->
     <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="log">
