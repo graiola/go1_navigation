@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<launch>
+
+    <!--  set arguments -->
+    <arg name="world_name" default="empty" />
+    <arg name="task_period" default="0.001" />
+    <arg name="rqt_gui" default="false" />
+    <arg name="rviz_gui" default="true" />
+    <arg name="local_planner" default="dwa_local_planner/DWAPlannerROS" />
+    <arg name="global_planner" default="navfn/NavfnROS"/>
+    <arg name="global_frame" default="map"/>
+    <arg name="odom_frame" default="odom"/>
+    <arg name="base_frame" default="base_footprint"/>
+    <arg name="scan_topic" default="scan"/>
+    <arg name="velodyne_pointcloud_topic" default="velodyne_points"/>
+    <arg name="depth_camera_name" default="D435_BASE"/>
+    <arg name="map_file" default="$(find go1_navigation)/maps/$(arg world_name).yaml" />
+    <arg name="mapping" default="true" />
+    <arg name="odom_twist_in_local_frame" default="false" />
+    <arg name="initial_height_offset" default="false" />
+    <arg name="launch_controller" default="true" />
+    <arg name="artifacts_mapping" default="false" />
+
+
+    <!-- Convert joint states to TF transforms for rviz, etc -->
+    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="log">
+        <remap from="/joint_states" to="/go1/joint_states"/>
+    </node>
+
+    <!-- create a static transform base_footprint -->
+    <!-- TODO: remove this and use a dynamic computation of base_footprint -->
+    <!-- <node pkg="tf" type="static_transform_publisher" name="base_footprint_transform" args="0 0 0.737 0 0 0 1 base_footprint base_link 1" /> -->
+
+    <!-- start navigation module -->
+    <!--<include file="$(find wolf_navigation_utils)/launch/wolf_navigation_bringup.launch">
+        <arg name="world_name" value="$(arg world_name)" />
+        <arg name="task_period" value="$(arg task_period)" />
+        <arg name="rqt_gui" value="$(arg rqt_gui)" />
+        <arg name="local_planner" value="$(arg local_planner)" />
+        <arg name="global_planner" value="$(arg global_planner)"/>
+        <arg name="global_frame" value="$(arg global_frame)"/>
+        <arg name="odom_frame" value="$(arg odom_frame)"/>
+        <arg name="base_frame" value="$(arg base_frame)"/>
+        <arg name="scan_topic" value="$(arg scan_topic)"/>
+        <arg name="velodyne_pointcloud_topic" value="$(arg velodyne_pointcloud_topic)"/>
+        <arg name="depth_camera_name" value="$(arg depth_camera_name)"/>
+        <arg name="robot_params" value="$(find go1_navigation)/config"/>
+        <arg name="map_file" value="$(arg map_file)" />
+        <arg name="mapping" value="$(arg mapping)" />
+        <arg name="artifacts_mapping" value="$(arg artifacts_mapping)" />
+        <arg name="command_vel" value="/cmd_vel" />
+        <arg name="odom_twist_in_local_frame" value="$(arg odom_twist_in_local_frame)" />
+        <arg name="initial_height_offset" value="$(arg initial_height_offset)" />
+    </include>-->
+
+
+    <!-- Launch rviz -->
+    <node
+      type="rviz"
+      name="rviz"
+      pkg="rviz"
+      args="-d $(find go1_navigation)/rviz/go1_nav.rviz" 
+      if="$(arg rviz_gui)"/>
+   
+</launch>
