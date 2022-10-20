@@ -1,5 +1,0 @@
-trackingcamera_topics: ["/T265_camera/odom/sample"]
-contact_names: ["fl_contact","hl_contact","fr_contact","hr_contact"]
-base_frame_id: "base_link"
-twist_in_local_frame: $(arg odom_twist_in_local_frame)
-initial_height_offset: $(arg initial_height_offset)
