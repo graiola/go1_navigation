@@ -54,6 +54,7 @@
         <arg name="command_vel" value="/cmd_vel" />
         <arg name="odom" value="false" />
         <arg name="launch_controller" value="false" />
+        <arg name="rviz_gui" value="false" />
     </include>
 
 </launch>
