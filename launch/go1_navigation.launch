@@ -18,6 +18,8 @@
     <arg name="mapping" default="true" />
     <arg name="artifacts_mapping" default="false" />
 
+    <remap from="/wolf_navigation/battery_state" to="/go1/battery_state"/>
+
     <!-- Send the robot urdf to parameter server -->
     <include file="$(find wolf_description_utils)/launch/upload.launch">
         <arg name="sensors" value="true" />
