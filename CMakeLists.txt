@@ -7,6 +7,10 @@ catkin_package()
 
 include_directories()
 
+install(DIRECTORY params/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/params
+  PATTERN ".svn" EXCLUDE)
+
 install(DIRECTORY maps/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/maps
   PATTERN ".svn" EXCLUDE)
