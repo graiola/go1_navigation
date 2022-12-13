@@ -1,0 +1,28 @@
+<launch>
+	<arg name="target" default="localhost" />
+
+	<!-- The sender node -->
+	<node name="tcp_sender" pkg="nimbro_topic_transport" type="tcp_sender" output="screen">
+
+		<!-- The destination host name or IP address -->
+		<param name="destination_addr" value="$(arg target)" />
+		<param name="destination_port" value="17001" />
+
+		<!-- Load the list of topics from a YAML file -->
+		<rosparam command="load" file="$(find go1_navigation)/params/nimbro/topics.yaml" />
+	</node>
+	
+
+	<node name="tcp_server" pkg="nimbro_service_transport" type="tcp_server" output="screen">
+		<param name="port" value="6000" />
+	</node>
+
+	<node name="tcp_client" pkg="nimbro_service_transport" type="tcp_client" output="screen">
+		<param name="server" value="$(arg target)" />
+		<param name="port" value="6000" />
+
+		<!-- Load the list of services from a YAML file -->
+		<rosparam command="load" file="$(find go1_navigation)/params/nimbro/services.yaml" />
+	</node>
+
+</launch>
