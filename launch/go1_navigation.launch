@@ -17,6 +17,8 @@
     <arg name="map_file" default="$(find go1_navigation)/maps/$(arg world_name).yaml" />
     <arg name="mapping" default="true" />
     <arg name="artifacts_mapping" default="false" />
+    <arg name="task_gui" default="false" />
+    <arg name="launch_lidar" default="true" />
 
     <remap from="/battery_state" to="/go1/battery_state"/>
 
@@ -33,7 +35,7 @@
     </node>
 
     <!-- Activate rslidar driver -->
-    <include file="$(find rslidar_pointcloud)/launch/rs_lidar_16.launch">
+    <include file="$(find rslidar_pointcloud)/launch/rs_lidar_16.launch" if="$(arg launch_lidar)">
     </include>
 
     <!-- start navigation module -->
@@ -58,6 +60,7 @@
         <arg name="odom" value="false" />
         <arg name="launch_controller" value="false" />
         <arg name="rviz_gui" value="false" />
+        <arg name="task_gui" value="$(arg task_gui)" />
     </include>
 
 </launch>
