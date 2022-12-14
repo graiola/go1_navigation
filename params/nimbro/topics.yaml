@@ -2,18 +2,15 @@ topics:
  - name: "/tf"
    compress: true
    rate: 10.0
- - name: "/move_base/global_costmap/costmap"
+ - name: "/map"
    compress: true # enable bz2 compression
-   rate: 0.1 # rate limit
- - name: "/move_base/local_costmap/costmap"
-   compress: true
-   rate: 0.1
- - name: "/move_base/TebLocalPlannerROS/global_plan"
-   compress: true
-   rate: 1.0
- - name: "/move_base/TebLocalPlannerROS/local_plan"
-   compress: true
-   rate: 1.0
+   rate: 1.0 # rate limit
+ #- name: "/move_base/TebLocalPlannerROS/global_plan"
+ #  compress: true
+ #  rate: 1.0
+ #- name: "/move_base/TebLocalPlannerROS/local_plan"
+ #  compress: true
+ #  rate: 1.0
  - name: "/move_base/current_goal"
    compress: true
  - name: "/waypoints/update"
