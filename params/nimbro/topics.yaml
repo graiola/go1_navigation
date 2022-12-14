@@ -1,26 +1,27 @@
 topics:
  - name: "/tf"
-   compress: true # enable bz2 compression
-   rate: 1.0 # rate limit at 1Hz
  - name: "/move_base/global_costmap/costmap"
    compress: true # enable bz2 compression
    rate: 1.0 # rate limit at 1Hz
  - name: "/move_base/local_costmap/costmap"
-   compress: true # enable bz2 compression
-   rate: 1.0 # rate limit at 1Hz
+   compress: true
+   rate: 1.0
  - name: "/move_base/TebLocalPlannerROS/global_plan"
-   compress: true # enable bz2 compression
-   rate: 1.0 # rate limit at 1Hz
+   compress: true
+   rate: 1.0
  - name: "/move_base/TebLocalPlannerROS/local_plan"
-   compress: true # enable bz2 compression
-   rate: 1.0 # rate limit at 1Hz
+   compress: true
+   rate: 1.0
  - name: "/move_base/current_goal"
-   compress: true # enable bz2 compression
-   rate: 1.0 # rate limit at 1Hz
+   compress: true
+   rate: 1.0
  - name: "/waypoints/update"
-   compress: true # enable bz2 compression
-   rate: 1.0 # rate limit at 1Hz
+   compress: true
+   rate: 1.0
  - name: "/home/update"
-   compress: true # enable bz2 compression
-   rate: 1.0 # rate limit at 1Hz
+   compress: true
+   rate: 1.0
+ - name: "/camera_face/left_rect_image_out"
+   compress: true
+   rate: 30.0
    
