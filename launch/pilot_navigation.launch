@@ -5,8 +5,6 @@
     <arg name="task_period" default="0.001" />
     <arg name="rviz_gui" default="true" />
     <arg name="nimbro" default="false" />
-
-    <remap from="/battery_state" to="/go1/battery_state"/>
     
      <!-- Launch nimbro network -->
     <include file="$(find go1_navigation)/launch/nimbro_pilot.launch" if="$(arg nimbro)">

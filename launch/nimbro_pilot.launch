@@ -12,7 +12,7 @@
 	<node name="udp_client" pkg="nimbro_service_transport" type="udp_client" output="screen">
 		<param name="server" value="$(arg target)" />
 		<param name="port" value="6000" />
-
+		<param name="timeout" value="60" />
 		<rosparam command="load" file="$(find go1_navigation)/params/nimbro/services_robot.yaml" />
 	</node>
 
