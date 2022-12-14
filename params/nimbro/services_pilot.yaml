@@ -1,0 +1,27 @@
+services:
+ - name: /wolf_panel/remove_widget
+   type: rt_gui/Void
+ - name: /wolf_panel/add_trigger
+   type: rt_gui/Void
+ - name: /wolf_panel/add_text
+   type: rt_gui/Text
+ - name: /wolf_panel/add_list
+   type: rt_gui/List
+ - name: /wolf_panel/add_label
+   type: rt_gui/Text
+ - name: /wolf_panel/add_int
+   type: rt_gui/Int
+ - name: /wolf_panel/add_double
+   type: rt_gui/Double
+ - name: /wolf_panel/add_bool
+   type: rt_gui/Bool
+   
+   
+   
+   
+
+
+
+
+
+

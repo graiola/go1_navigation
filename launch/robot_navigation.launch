@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
 
-    <!--  set arguments -->
+    <!--  Set arguments -->
     <arg name="world_name" default="empty" />
     <arg name="task_period" default="0.001" />
     <arg name="rqt_gui" default="false" />
@@ -19,8 +19,13 @@
     <arg name="artifacts_mapping" default="false" />
     <arg name="task_gui" default="false" />
     <arg name="launch_lidar" default="true" />
+    <arg name="nimbro" default="false" />
 
     <remap from="/battery_state" to="/go1/battery_state"/>
+    
+     <!-- Launch nimbro network -->
+    <include file="$(find go1_navigation)/launch/nimbro_robot.launch" if="$(arg nimbro)">
+    </include>
 
     <!-- Send the robot urdf to parameter server -->
     <include file="$(find wolf_description_utils)/launch/upload.launch">

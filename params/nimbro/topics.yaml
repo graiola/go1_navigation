@@ -24,4 +24,7 @@ topics:
  - name: "/camera_face/left_rect_image_out"
    compress: true
    rate: 30.0
+ - name: "/go1/joint_states"
+   compress: true
+   rate: 10.0
    

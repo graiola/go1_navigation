@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<launch>
+
+    <!--  Set arguments -->
+    <arg name="task_period" default="0.001" />
+    <arg name="rviz_gui" default="true" />
+    <arg name="nimbro" default="false" />
+
+    <remap from="/battery_state" to="/go1/battery_state"/>
+    
+     <!-- Launch nimbro network -->
+    <include file="$(find go1_navigation)/launch/nimbro_pilot.launch" if="$(arg nimbro)">
+    </include>
+
+    <!-- Send the robot urdf to parameter server -->
+    <include file="$(find wolf_description_utils)/launch/upload.launch">
+        <arg name="sensors" value="true" />
+        <arg name="task_period" value="$(arg task_period)" />
+        <arg name="robot_name" value="go1" />
+    </include>
+
+    <!-- Convert joint states to TF transforms for rviz, etc -->
+    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="log">
+        <remap from="/joint_states" to="/go1/joint_states"/>
+    </node>
+
+    <!-- Rviz -->
+    <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen"
+          args="$(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)"/>
+
+</launch>
