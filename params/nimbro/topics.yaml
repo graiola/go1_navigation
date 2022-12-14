@@ -4,10 +4,10 @@ topics:
    rate: 10.0
  - name: "/move_base/global_costmap/costmap"
    compress: true # enable bz2 compression
-   rate: 1.0 # rate limit at 1Hz
+   rate: 0.1 # rate limit
  - name: "/move_base/local_costmap/costmap"
    compress: true
-   rate: 1.0
+   rate: 0.1
  - name: "/move_base/TebLocalPlannerROS/global_plan"
    compress: true
    rate: 1.0
