@@ -1,5 +1,7 @@
 topics:
  - name: "/tf"
+   compress: true
+   rate: 10.0
  - name: "/move_base/global_costmap/costmap"
    compress: true # enable bz2 compression
    rate: 1.0 # rate limit at 1Hz
@@ -14,16 +16,13 @@ topics:
    rate: 1.0
  - name: "/move_base/current_goal"
    compress: true
-   rate: 1.0
  - name: "/waypoints/update"
    compress: true
-   rate: 1.0
  - name: "/home/update"
    compress: true
-   rate: 1.0
  - name: "/camera_face/left_rect_image_out"
    compress: true
-   rate: 30.0
+   rate: 10.0
  - name: "/go1/joint_states"
    compress: true
    rate: 10.0
