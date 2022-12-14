@@ -26,6 +26,6 @@
 
     <!-- Rviz -->
     <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen"
-          args="$(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)"/>
+          args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)"/>
 
 </launch>
