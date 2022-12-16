@@ -1,0 +1,34 @@
+topics:
+ - name: "/tf" # topic name
+   compress: true # enable bz2 compression
+   rate: 10.0 # rate limit
+ - name: "/tf_static"
+   compress: true # enable bz2 compression
+   rate: 10.0 # rate limit
+ - name: "/map"
+   compress: true # enable bz2 compression
+   rate: 10.0 # rate limit
+   resend: true
+ - name: "/move_base/current_goal"
+   compress: true
+   rate: 1.0
+ - name: "/go1/joint_states"
+   compress: true
+   rate: 10.0
+ - name: "/waypoints/feedback"
+   rate: 10.0
+ - name: "/waypoints/update"
+   rate: 10.0
+ - name: "/home/feedback"
+   rate: 10.0
+ - name: "/home/update"
+   rate: 10.0
+#- name: "/home"
+#  compress: true
+#  rate: 1.0
+#- name: "/move_base/TebLocalPlannerROS/global_plan"
+#  compress: true
+#  rate: 1.0
+#- name: "/move_base/TebLocalPlannerROS/local_plan"
+#  compress: true
+#  rate: 1.0
