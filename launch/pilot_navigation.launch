@@ -2,19 +2,14 @@
 <launch>
 
     <!--  Set arguments -->
-    <arg name="task_period" default="0.001" />
     <arg name="rviz_gui" default="true" />
     <arg name="nimbro" default="false" />
     
-     <!-- Launch nimbro network -->
-    <include file="$(find go1_navigation)/launch/nimbro_pilot.launch" if="$(arg nimbro)">
-    </include>
-
-    <!-- Send the robot urdf to parameter server -->
-    <include file="$(find wolf_description_utils)/launch/upload.launch">
-        <arg name="sensors" value="true" />
-        <arg name="task_period" value="$(arg task_period)" />
-        <arg name="robot_name" value="go1" />
+    <!-- Launch navigation with nimbro network -->
+    <include file="$(find wolf_navigation_utils)/launch/wolf_pilot_navigation.launch" if="$(arg nimbro)">
+    	    <arg name="rviz_gui"   value="$(arg rviz_gui)" />
+            <arg name="target"     value="10.8.0.2" />
+            <arg name="robot_name" value="go1" />
     </include>
 
     <!-- Convert joint states to TF transforms for rviz, etc -->
@@ -23,7 +18,6 @@
     </node>
 
     <!-- Rviz -->
-    <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen"
-          args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)"/>
+    <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)"/>
 
 </launch>

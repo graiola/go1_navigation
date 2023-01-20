@@ -2,70 +2,80 @@
 <launch>
 
     <!--  Set arguments -->
-    <arg name="world_name" default="empty" />
-    <arg name="task_period" default="0.001" />
-    <arg name="rqt_gui" default="false" />
-    <arg name="rviz_gui" default="true" />
-    <arg name="local_planner" default="dwa_local_planner/DWAPlannerROS" />
-    <arg name="global_planner" default="navfn/NavfnROS"/>
-    <arg name="global_frame" default="map"/>
-    <arg name="odom_frame" default="base"/>
-    <arg name="base_frame" default="trunk"/>
-    <arg name="scan_topic" default="scan"/>
-    <arg name="lidar_pointcloud_topic" default="rslidar_points"/>
-    <arg name="depth_camera_name" default="D435_BASE"/>
-    <arg name="map_file" default="$(find go1_navigation)/maps/$(arg world_name).yaml" />
-    <arg name="mapping" default="true" />
-    <arg name="artifacts_mapping" default="false" />
-    <arg name="task_gui" default="false" />
-    <arg name="launch_lidar" default="true" />
-    <arg name="nimbro" default="false" />
+    <arg name="world_name"     default="empty" />
+    <arg name="rqt_gui"        default="false" />
+    <arg name="rviz_gui"       default="true" />
+    <arg name="global_frame"   default="map"/>
+    <arg name="odom_frame"     default="base"/>
+    <arg name="base_frame"     default="trunk"/>
+    <arg name="scan_topic"     default="scan"/>
+    <arg name="lidar_topic"    default="rslidar_points"/>
+    <arg name="mapping"        default="true" />
+    <arg name="outdoor"        default="false" />
+    <arg name="task_gui"       default="false" />
+    <arg name="launch_lidar"   default="true" />
+    <arg name="nimbro"         default="false" />
 
+    <!-- Remap battery state -->
     <remap from="/battery_state" to="/go1/battery_state"/>
-    
-     <!-- Launch nimbro network -->
-    <include file="$(find go1_navigation)/launch/nimbro_robot.launch" if="$(arg nimbro)">
-    </include>
 
     <!-- Send the robot urdf to parameter server -->
     <include file="$(find wolf_description_utils)/launch/upload.launch">
-        <arg name="sensors" value="true" />
-        <arg name="task_period" value="$(arg task_period)" />
-        <arg name="robot_name" value="go1" />
+        <arg name="sensors"     value="true" />
+        <arg name="robot_name"  value="go1" />
     </include>
+
+    <!-- Activate rslidar driver (old version) -->
+    <!-- <include file="$(find rslidar_pointcloud)/launch/rs_lidar_16.launch" if="$(arg launch_lidar)"/> -->
+
+    <!-- Activate rslidar driver (new version) -->
+    <include file="$(find rslidar_sdk)/launch/start.launch" if="$(arg launch_lidar)"/>
 
     <!-- Convert joint states to TF transforms for rviz, etc -->
     <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="log">
         <remap from="/joint_states" to="/go1/joint_states"/>
     </node>
-
-    <!-- Activate rslidar driver -->
-    <include file="$(find rslidar_pointcloud)/launch/rs_lidar_16.launch" if="$(arg launch_lidar)">
-    </include>
-
-    <!-- start navigation module -->
-    <include file="$(find wolf_navigation_utils)/launch/wolf_navigation.launch">
-        <arg name="robot_name" value="go1"/>
-        <arg name="robot_params" value="$(find go1_navigation)/params"/>
-        <arg name="world_name" value="$(arg world_name)" />
-        <arg name="task_period" value="$(arg task_period)" />
-        <arg name="rqt_gui" value="$(arg rqt_gui)" />
-        <arg name="local_planner" value="$(arg local_planner)" />
-        <arg name="global_planner" value="$(arg global_planner)"/>
-        <arg name="global_frame" value="$(arg global_frame)"/>
-        <arg name="odom_frame" value="$(arg odom_frame)"/>
-        <arg name="base_frame" value="$(arg base_frame)"/>
-        <arg name="scan_topic" value="$(arg scan_topic)"/>
-        <arg name="lidar_pointcloud_topic" value="$(arg lidar_pointcloud_topic)"/>
-        <arg name="depth_camera_name" value="$(arg depth_camera_name)"/>
-        <arg name="map_file" value="$(arg map_file)" />
-        <arg name="mapping" value="$(arg mapping)" />
-        <arg name="artifacts_mapping" value="$(arg artifacts_mapping)" />
-        <arg name="command_vel" value="/cmd_vel" />
-        <arg name="odom" value="false" />
-        <arg name="launch_controller" value="false" />
-        <arg name="rviz_gui" value="false" />
-        <arg name="task_gui" value="$(arg task_gui)" />
-    </include>
+    
+    <!-- Launch navigation with nimbro network -->
+    <group if="$(arg nimbro)">
+	<include file="$(find wolf_navigation_utils)/launch/wolf_robot_navigation.launch">
+  		<arg name="robot_name"        value="go1"/>
+		<arg name="robot_params"      value="$(find go1_navigation)/params"/>
+		<arg name="world_name"        value="$(arg world_name)" />
+    		<arg name="global_frame"      value="$(arg global_frame)"/>
+    		<arg name="odom_frame"        value="$(arg odom_frame)"/>
+    		<arg name="base_frame"        value="$(arg base_frame)"/>
+    		<arg name="scan_topic"        value="$(arg scan_topic)"/>
+    		<arg name="lidar_topic"       value="$(arg lidar_topic)"/>
+    		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
+    		<arg name="mapping"           value="$(arg mapping)" />
+    		<arg name="outdoor"           value="$(arg outdoor)" />
+    		<arg name="task_gui"          value="$(arg task_gui)" />
+		<arg name="cmd_vel_topic"     value="/cmd_vel" />
+		<arg name="launch_controller" value="false" />
+		<arg name="odom"              value="false" />
+		<arg name="target"            value="10.8.0.1" />
+	</include>
+    </group>
+    <!-- Launch navigation -->
+    <group unless="$(arg nimbro)">
+	    <include file="$(find wolf_navigation_utils)/launch/wolf_navigation.launch">
+  		<arg name="robot_name"        value="go1"/>
+		<arg name="robot_params"      value="$(find go1_navigation)/params"/>
+		<arg name="world_name"        value="$(arg world_name)" />
+    		<arg name="global_frame"      value="$(arg global_frame)"/>
+    		<arg name="odom_frame"        value="$(arg odom_frame)"/>
+    		<arg name="base_frame"        value="$(arg base_frame)"/>
+    		<arg name="scan_topic"        value="$(arg scan_topic)"/>
+    		<arg name="lidar_topic"       value="$(arg lidar_topic)"/>
+    		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
+    		<arg name="mapping"           value="$(arg mapping)" />
+    		<arg name="outdoor"           value="$(arg outdoor)" />
+    		<arg name="task_gui"          value="$(arg task_gui)" />
+		<arg name="cmd_vel_topic"     value="/cmd_vel" />
+		<arg name="launch_controller" value="false" />
+		<arg name="odom"              value="false" />
+	    </include>
+     </group>
 
 </launch>
