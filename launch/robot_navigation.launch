@@ -3,17 +3,17 @@
 
     <!--  Set arguments -->
     <arg name="world_name"     default="empty" />
+    <arg name="task_gui"       default="true"  />
     <arg name="rqt_gui"        default="false" />
-    <arg name="rviz_gui"       default="true" />
-    <arg name="global_frame"   default="map"/>
-    <arg name="odom_frame"     default="base"/>
-    <arg name="base_frame"     default="trunk"/>
-    <arg name="scan_topic"     default="scan"/>
-    <arg name="lidar_topic"    default="rslidar_points"/>
-    <arg name="mapping"        default="true" />
+    <arg name="rviz_gui"       default="true"  />
+    <arg name="global_frame"   default="map"   />
+    <arg name="odom_frame"     default="base"  />
+    <arg name="base_frame"     default="trunk" />
+    <arg name="scan_topic"     default="/scan" />
+    <arg name="lidar_topic"    default="/rslidar_points"/>
+    <arg name="mapping"        default="true"  />
     <arg name="outdoor"        default="false" />
-    <arg name="task_gui"       default="false" />
-    <arg name="launch_lidar"   default="true" />
+    <arg name="launch_lidar"   default="true"  />
     <arg name="nimbro"         default="false" />
 
     <!-- Remap battery state -->
@@ -51,6 +51,8 @@
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="outdoor"           value="$(arg outdoor)" />
     		<arg name="task_gui"          value="$(arg task_gui)" />
+                <arg name="rqt_gui"           value="$(arg rqt_gui)"  />
+    		<arg name="rviz_gui"          value="$(arg rviz_gui)" />
 		<arg name="cmd_vel_topic"     value="/cmd_vel" />
 		<arg name="launch_controller" value="false" />
 		<arg name="odom"              value="false" />
@@ -72,6 +74,8 @@
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="outdoor"           value="$(arg outdoor)" />
     		<arg name="task_gui"          value="$(arg task_gui)" />
+                <arg name="rqt_gui"           value="$(arg rqt_gui)"  />
+    		<arg name="rviz_gui"          value="$(arg rviz_gui)" />
 		<arg name="cmd_vel_topic"     value="/cmd_vel" />
 		<arg name="launch_controller" value="false" />
 		<arg name="odom"              value="false" />
