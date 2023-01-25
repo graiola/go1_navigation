@@ -2,22 +2,22 @@
 <launch>
 
     <!--  Set arguments -->
-    <arg name="rviz_gui" default="true" />
     <arg name="nimbro" default="false" />
     
     <!-- Launch navigation with nimbro network -->
     <include file="$(find wolf_navigation_utils)/launch/wolf_pilot_navigation.launch" if="$(arg nimbro)">
-    	    <arg name="rviz_gui"   value="$(arg rviz_gui)" />
-            <arg name="target"     value="10.8.0.2" />
+    	    <remap from="/joint_states" to="/go1/joint_states"/>	
+    	    <arg name="rviz_gui"   value="false" />
+            <arg name="target"     value="10.8.0.3" />
             <arg name="robot_name" value="go1" />
     </include>
-
+    
     <!-- Convert joint states to TF transforms for rviz, etc -->
-    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="log">
+    <!--<node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="log">
         <remap from="/joint_states" to="/go1/joint_states"/>
-    </node>
+    </node>-->
 
     <!-- Rviz -->
-    <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)"/>
+    <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz"/>
 
 </launch>
