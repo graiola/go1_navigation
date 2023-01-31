@@ -3,12 +3,13 @@
 
     <!--  Set arguments -->
     <arg name="nimbro" default="false" />
+    <arg name="target" default="10.8.0.2" />
     
     <!-- Launch navigation with nimbro network -->
     <include file="$(find wolf_navigation_utils)/launch/wolf_pilot_navigation.launch" if="$(arg nimbro)">
     	    <remap from="/joint_states" to="/go1/joint_states"/>	
     	    <arg name="rviz_gui"   value="false" />
-            <arg name="target"     value="10.8.0.3" />
+            <arg name="target"     value="$(arg target)" />
             <arg name="robot_name" value="go1" />
     </include>
     
