@@ -11,6 +11,9 @@
     <arg name="base_frame"     default="trunk" />
     <arg name="scan_topic"     default="/scan" />
     <arg name="lidar_topic"    default="/rslidar_points"/>
+    <arg name="imu_topic"      default="/go1/imu"/>
+    <arg name="gps_topic"      default="/go1/gps/fix" />
+    <arg name="depth_topic"    default="/" />
     <arg name="mapping"        default="true"  />
     <arg name="outdoor"        default="false" />
     <arg name="launch_lidar"   default="true"  />
@@ -48,6 +51,9 @@
     		<arg name="base_frame"        value="$(arg base_frame)"/>
     		<arg name="scan_topic"        value="$(arg scan_topic)"/>
     		<arg name="lidar_topic"       value="$(arg lidar_topic)"/>
+                <arg name="imu_topic"         value="$(arg imu_topic)"/>
+                <arg name="gps_topic"         value="$(arg gps_topic)" />
+                <arg name="depth_topic"       value="$(arg depth_topic)" />
     		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="outdoor"           value="$(arg outdoor)" />
@@ -71,6 +77,9 @@
     		<arg name="base_frame"        value="$(arg base_frame)"/>
     		<arg name="scan_topic"        value="$(arg scan_topic)"/>
     		<arg name="lidar_topic"       value="$(arg lidar_topic)"/>
+                <arg name="imu_topic"         value="$(arg imu_topic)"/>
+                <arg name="gps_topic"         value="$(arg gps_topic)" />
+                <arg name="depth_topic"       value="$(arg depth_topic)" />
     		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="outdoor"           value="$(arg outdoor)" />
