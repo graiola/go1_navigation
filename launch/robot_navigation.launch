@@ -79,7 +79,7 @@
     		<arg name="rviz_gui"          value="$(arg rviz_gui)" />
 		<arg name="cmd_vel_topic"     value="/cmd_vel" />
 		<arg name="launch_controller" value="false" />
-		<arg name="odom"              value="false" />
+		<arg name="ext_odom"          value="true" /> <!-- Let's use Go1 odometry -->
 	    </include>
      </group>
 
