@@ -7,7 +7,7 @@
     
     <!-- Launch navigation with nimbro network -->
     <include file="$(find wolf_navigation_utils)/launch/wolf_pilot_navigation.launch" if="$(arg nimbro)">
-    	    <remap from="/joint_states" to="/go1/joint_states"/>	
+    	    <remap from="/joint_states" to="/go1/joint_states"/>
     	    <arg name="rviz_gui"   value="false" />
             <arg name="target"     value="$(arg target)" />
             <arg name="robot_name" value="go1" />
