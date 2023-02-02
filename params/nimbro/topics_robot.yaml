@@ -1,0 +1,5 @@
+topics:
+ - name: "/yolact_inference" # topic name
+   compress: true # enable bz2 compression
+   rate: 10.0 # rate limit
+

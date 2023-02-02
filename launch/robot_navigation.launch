@@ -38,6 +38,8 @@
     
     <!-- Launch navigation with nimbro network -->
     <group if="$(arg nimbro)">
+    	<!-- Add specific go1 nimbro topics/services -->
+    	<rosparam command="load" file="$(find go1_navigation)/params/nimbro/topics_robot.yaml" ns="udp_sender"/>
 	<include file="$(find wolf_navigation_utils)/launch/wolf_robot_navigation.launch">
   		<arg name="robot_name"        value="go1"/>
 		<arg name="robot_params"      value="$(find go1_navigation)/params"/>
