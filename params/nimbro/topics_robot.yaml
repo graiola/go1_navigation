@@ -1,5 +1,47 @@
 topics:
- - name: "/yolact_inference" # topic name
+ - name: "/tf" # topic name
    compress: true # enable bz2 compression
-   rate: 10.0 # rate limit
-
+   rate: 20.0 # rate limit
+ - name: "/tf_static"
+   compress: true
+   rate: 20.0
+ - name: "/joint_states"
+   compress: true
+   rate: 20.0
+ - name: "/map"
+   compress: true
+   rate: 1.0
+   resend: true
+ - name: "/gps/filtered"
+   compress: true
+   rate: 1.0
+ - name: "/waypoints/update"
+   compress: true
+   rate: 10.0
+ - name: "/waypoints/feedback"
+   compress: true
+   rate: 10.0
+ - name: "/waypoints/update_full"
+   compress: true
+   rate: 10.0
+ - name: "/home/update"
+   compress: true
+   rate: 10.0
+ - name: "/home/feedback"
+   compress: true
+   rate: 10.0
+ - name: "/home/update_full"
+   compress: true
+   rate: 10.0
+ - name: "/move_base/TebLocalPlannerROS/global_plan"
+   compress: true
+   rate: 1.0
+ - name: "/move_base/TebLocalPlannerROS/local_plan"
+   compress: true
+   rate: 1.0
+ - name: "/move_base/current_goal"
+   compress: true
+   rate: 1.0
+ - name: "/yolact_inference"
+   compress: true
+   rate: 10.0
