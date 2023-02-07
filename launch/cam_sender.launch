@@ -1,9 +1,0 @@
-<launch>
-	<node name="sender" pkg="nimbro_cam_transport" type="cam_sender" output="screen">
-		<remap from="~image" to="/yolact_inference" />
-		<remap from="~encoded" to="/yolact_inference_encoded" />
-
-		<param name="rate" value="5000.0" />
-	</node>
-
-</launch>
