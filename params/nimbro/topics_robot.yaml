@@ -42,5 +42,5 @@ topics:
  - name: "/move_base/current_goal"
    compress: true
    rate: 1.0
- - name: "/yolact_inference"
+ - name: "/yolact_inference_encoded"
    rate: 50.0
