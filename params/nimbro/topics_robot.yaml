@@ -43,5 +43,4 @@ topics:
    compress: true
    rate: 1.0
  - name: "/yolact_inference"
-   compress: true
-   rate: 10.0
+   rate: 50.0
