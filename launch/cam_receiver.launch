@@ -1,0 +1,7 @@
+<launch>
+	<node name="receiver" pkg="nimbro_cam_transport" type="cam_receiver" output="screen">
+		<remap from="~encoded" to="/yolact_inference_encoded" />
+		<remap from="~image" to="/yolact_inference_out" />
+	</node>
+
+</launch>
