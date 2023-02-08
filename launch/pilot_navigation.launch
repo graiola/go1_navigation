@@ -5,6 +5,7 @@
     <arg name="nimbro"       default="false" />
     <arg name="target"       default="10.8.0.2" />
     <arg name="camera_topic" default="/yolact_inference" />
+    <arg name="nimbro_params" default="$(find go1_navigation)/params/nimbro" />
     
     <!-- Launch navigation with nimbro network -->
     <include file="$(find wolf_navigation_utils)/launch/wolf_pilot_navigation.launch" if="$(arg nimbro)">
@@ -13,6 +14,7 @@
             <arg name="target"        value="$(arg target)" />
             <arg name="robot_name"    value="go1" />
             <arg name="camera_topic"  value="$(arg camera_topic)" />
+            <arg name="nimbro_params" value="$(arg nimbro_params)" />
     </include>
     
     <!-- Convert joint states to TF transforms for rviz, etc -->
