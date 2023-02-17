@@ -44,6 +44,6 @@ topics:
    rate: 1.0
  - name: "/yolact_inference_encoded"
    rate: 50.0
--  name: "/go1/battery_state"
+ - name: "/go1/battery_state"
    compress: true
    rate: 1.0
