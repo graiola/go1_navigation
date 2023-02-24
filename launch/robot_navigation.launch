@@ -8,7 +8,7 @@
     <arg name="rviz_gui"       default="true"  />
     <arg name="global_frame"   default="map"   />
     <arg name="odom_frame"     default="odom"  />
-    <arg name="base_frame"     default="trunk" />
+    <arg name="base_frame"     default="base_footprint" />
     <arg name="scan_topic"     default="/scan" />
     <arg name="lidar_topic"    default="/rslidar_points"/>
     <arg name="imu_topic"      default="/go1/imu"/>
