@@ -15,7 +15,7 @@
     <arg name="gps_topic"      default="/go1/gps/fix" />
     <arg name="depth_topic"    default="" />
     <arg name="mapping"        default="true"  />
-    <arg name="outdoor"        default="false" />
+    <arg name="type"           default="indoor" />
     <arg name="launch_lidar"   default="true"  />
     <!-- Nimbro args -->
     <arg name="nimbro"         default="false" />
@@ -60,7 +60,7 @@
                 <arg name="camera_topic"      value="$(arg camera_topic)" />
     		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
     		<arg name="mapping"           value="$(arg mapping)" />
-    		<arg name="outdoor"           value="$(arg outdoor)" />
+    		<arg name="type"              value="$(arg type)" />
     		<arg name="task_gui"          value="$(arg task_gui)" />
                 <arg name="rqt_gui"           value="$(arg rqt_gui)"  />
     		<arg name="rviz_gui"          value="$(arg rviz_gui)" />
@@ -87,7 +87,7 @@
                 <arg name="depth_topic"       value="$(arg depth_topic)" />
     		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
     		<arg name="mapping"           value="$(arg mapping)" />
-    		<arg name="outdoor"           value="$(arg outdoor)" />
+    		<arg name="type"              value="$(arg type)" />
     		<arg name="task_gui"          value="$(arg task_gui)" />
                 <arg name="rqt_gui"           value="$(arg rqt_gui)"  />
     		<arg name="rviz_gui"          value="$(arg rviz_gui)" />
