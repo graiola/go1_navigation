@@ -4,7 +4,6 @@
     <!--  Set arguments -->
     <arg name="world_name"     default="empty" />
     <arg name="task_gui"       default="true"  />
-    <arg name="rqt_gui"        default="false" />
     <arg name="rviz_gui"       default="true"  />
     <arg name="global_frame"   default="map"   />
     <arg name="odom_frame"     default="odom"  />
@@ -62,7 +61,6 @@
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="type"              value="$(arg type)" />
     		<arg name="task_gui"          value="$(arg task_gui)" />
-                <arg name="rqt_gui"           value="$(arg rqt_gui)"  />
     		<arg name="rviz_gui"          value="$(arg rviz_gui)" />
 		<arg name="cmd_vel_topic"     value="/cmd_vel" />
 		<arg name="launch_controller" value="false" />
@@ -89,7 +87,6 @@
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="type"              value="$(arg type)" />
     		<arg name="task_gui"          value="$(arg task_gui)" />
-                <arg name="rqt_gui"           value="$(arg rqt_gui)"  />
     		<arg name="rviz_gui"          value="$(arg rviz_gui)" />
 		<arg name="cmd_vel_topic"     value="/cmd_vel" />
 		<arg name="launch_controller" value="false" />
