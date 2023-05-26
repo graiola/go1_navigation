@@ -27,3 +27,17 @@ services:
    type: rt_gui/Double
  - name: /controller/update_bool
    type: rt_gui/Bool
+ - name: /nav_control/update_trigger
+   type: rt_gui/Void
+ - name: /nav_control/update_text
+   type: rt_gui/Text
+ - name: /nav_control/update_list
+   type: rt_gui/List
+ - name: /nav_control/update_label
+   type: rt_gui/Text
+ - name: /nav_control/update_int
+   type: rt_gui/Int
+ - name: /nav_control/update_double
+   type: rt_gui/Double
+ - name: /nav_control/update_bool
+   type: rt_gui/Bool
