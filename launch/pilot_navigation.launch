@@ -4,7 +4,7 @@
     <!--  Set arguments -->
     <arg name="nimbro"       default="false" />
     <arg name="target"       default="10.8.0.2" />
-    <arg name="camera_topic" default="/yolact_inference" />
+    <arg name="camera_topic" default="" />
     <arg name="nimbro_params" default="$(find go1_navigation)/params/nimbro" />
     
     <!-- Launch navigation with nimbro network -->
