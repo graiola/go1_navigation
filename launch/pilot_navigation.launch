@@ -24,5 +24,9 @@
 
     <!-- Rviz -->
     <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz"/>
+    
+    <node name="image_view" pkg="image_view" type="image_view" output="screen">
+    	<remap from="image" to="$(arg camera_topic)" />
+    </node>
 
 </launch>
