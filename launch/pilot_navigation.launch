@@ -6,6 +6,7 @@
     <arg name="target"       default="10.8.0.2" />
     <arg name="camera_topic" default="/yolact_inference" />
     <arg name="nimbro_params" default="$(find go1_navigation)/params/nimbro" />
+    <arg name="rviz_gui"      default="true" />
     
     <!-- Launch navigation with nimbro network -->
     <include file="$(find wolf_navigation_utils)/launch/wolf_pilot_navigation.launch" if="$(arg nimbro)">
@@ -23,7 +24,7 @@
     </node>-->
 
     <!-- Rviz -->
-    <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz"/>
+    <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)" />
     
     <node name="image_view" pkg="image_view" type="image_view" output="screen">
     	<remap from="image" to="$(arg camera_topic)" />
