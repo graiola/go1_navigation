@@ -2,9 +2,9 @@
 <launch>
 
     <!--  Set arguments -->
-    <arg name="nimbro"       default="false" />
-    <arg name="target"       default="10.8.0.2" />
-    <arg name="camera_topic" default="/yolact_inference" />
+    <arg name="nimbro"        default="false" />
+    <arg name="target"        default="10.8.0.2" />
+    <arg name="camera_topic"  default="/yolact_inference" />
     <arg name="nimbro_params" default="$(find go1_navigation)/params/nimbro" />
     <arg name="rviz_gui"      default="true" />
     
