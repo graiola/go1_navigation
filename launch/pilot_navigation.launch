@@ -26,7 +26,7 @@
     <!-- Rviz -->
     <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)" />
     
-    <node name="image_view" pkg="image_view" type="image_view" output="screen">
+    <node name="image_view" pkg="image_view" type="image_view" output="screen" if="$(eval camera_topic != '')">
     	<remap from="image" to="$(arg camera_topic)" />
     </node>
 
