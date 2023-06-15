@@ -1,17 +1,17 @@
 services:
- - name: /task_interface/update_trigger
+ - name: /wolf_navigation/update_trigger
    type: rt_gui/Void
- - name: /task_interface/update_text
+ - name: /wolf_navigation/update_text
    type: rt_gui/Text
- - name: /task_interface/update_list
+ - name: /wolf_navigation/update_list
    type: rt_gui/List
- - name: /task_interface/update_label
+ - name: /wolf_navigation/update_label
    type: rt_gui/Text
- - name: /task_interface/update_int
+ - name: /wolf_navigation/update_int
    type: rt_gui/Int
- - name: /task_interface/update_double
+ - name: /wolf_navigation/update_double
    type: rt_gui/Double
- - name: /task_interface/update_bool
+ - name: /wolf_navigation/update_bool
    type: rt_gui/Bool
  - name: /controller/update_trigger
    type: rt_gui/Void
