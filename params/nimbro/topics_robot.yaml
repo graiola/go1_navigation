@@ -1,17 +1,16 @@
 topics:
  - name: "/tf" # topic name
    compress: true # enable bz2 compression
-   rate: 20.0 # rate limit
+   rate: 10.0 # rate limit
  - name: "/tf_static"
    compress: true
-   rate: 20.0
+   rate: 10.0
  - name: "/joint_states"
    compress: true
-   rate: 20.0
+   rate: 10.0
  - name: "/map"
    compress: true
-   rate: 1.0
-   resend: true
+   rate: 0.5
  - name: "/gps/filtered"
    compress: true
    rate: 1.0
@@ -43,6 +42,9 @@ topics:
    compress: true
    rate: 1.0
  - name: "/yolact_inference_encoded"
+   compress: true
+   rate: 100.0
+ - name: "/realsense/color/image_raw_encoded"
    compress: true
    rate: 100.0
  #- name: "/go1/battery_state"
