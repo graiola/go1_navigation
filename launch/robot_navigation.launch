@@ -2,20 +2,20 @@
 <launch>
 
     <!--  Set arguments -->
+    <arg name="robot_name"     default="" />
     <arg name="world_name"     default="empty" />
-    <arg name="task_gui"       default="true"  />
-    <arg name="rviz_gui"       default="true"  />
-    <arg name="global_frame"   default="map"   />
-    <arg name="odom_frame"     default="odom"  />
-    <arg name="base_frame"     default="base_footprint" />
-    <arg name="scan_topic"     default="/scan" />
-    <arg name="lidar_topic"    default="/rslidar_points"/>
-    <arg name="imu_topic"      default="/go1/imu"/>
-    <arg name="gps_topic"      default="/go1/gps/fix" />
-    <arg name="depth_topic"    default="" />
     <arg name="mapping"        default="true"  />
     <arg name="type"           default="indoor" />
     <arg name="launch_lidar"   default="true"  />
+    <arg name="global_frame"   default="map"   />
+    <arg name="odom_frame"     default="odom"  />
+    <arg name="base_frame"     default="base_footprint" />
+    <arg name="scan_topic"     default="scan" />
+    <arg name="lidar_topic"    default="rslidar_points"/>
+    <arg name="imu_topic"      default="imu"/>
+    <arg name="gps_topic"      default="gps/fix" />
+    <arg name="depth_topic"    default="" />
+
     <!-- Nimbro args -->
     <arg name="nimbro"         default="false" />
     <arg name="target"         default="10.8.0.1" />
@@ -23,29 +23,33 @@
     <arg name="nimbro_params"  default="$(find go1_navigation)/params/nimbro" />
 
     <!-- Remap battery state -->
-    <remap from="/battery_state" to="/go1/battery_state"/>
+    <remap from="battery_state" to="$(arg robot_name)/battery_state"/>
 
     <!-- Send the robot urdf to parameter server -->
     <include file="$(find wolf_description_utils)/launch/upload.launch">
-        <arg name="sensors"     value="true" />
-        <arg name="robot_name"  value="go1" />
+        <arg name="sensors"      value="true" />
+        <arg name="robot_name"   value="$(arg robot_name)" />
+        <arg name="robot_model"  value="go1" />
     </include>
 
     <!-- Activate rslidar driver (old version) -->
     <!-- <include file="$(find rslidar_pointcloud)/launch/rs_lidar_16.launch" if="$(arg launch_lidar)"/> -->
 
     <!-- Activate rslidar driver (new version) -->
-    <include file="$(find rslidar_sdk)/launch/start.launch" if="$(arg launch_lidar)"/>
+    <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" output="screen" if="$(arg launch_lidar)">
+      <param name="config_path" value=""/>
+    </node>
 
     <!-- Convert joint states to TF transforms for rviz, etc -->
     <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="log">
-        <remap from="/joint_states" to="/go1/joint_states"/>
+        <remap from="joint_states" to="$(arg robot_name)/joint_states"/>
     </node>
-    
+
     <!-- Launch navigation with nimbro network -->
     <group if="$(arg nimbro)">
 	<include file="$(find wolf_navigation_utils)/launch/wolf_robot_navigation.launch">
-  		<arg name="robot_name"        value="go1"/>
+                <arg name="robot_name"        value="$(arg robot_name)"/>
+                <arg name="robot_model"       value="go1"/>
 		<arg name="robot_params"      value="$(find go1_navigation)/params"/>
 		<arg name="world_name"        value="$(arg world_name)" />
     		<arg name="global_frame"      value="$(arg global_frame)"/>
@@ -60,8 +64,8 @@
     		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="type"              value="$(arg type)" />
-    		<arg name="task_gui"          value="$(arg task_gui)" />
-    		<arg name="rviz_gui"          value="$(arg rviz_gui)" />
+                <arg name="task_gui"          value="true" />
+                <arg name="rviz_gui"          value="false" />
 		<arg name="cmd_vel_topic"     value="/cmd_vel" />
 		<arg name="launch_controller" value="false" />
                 <arg name="launch_odometry"   value="false" /> <!-- Let's use Go1 odometry -->
@@ -72,7 +76,8 @@
     <!-- Launch navigation -->
     <group unless="$(arg nimbro)">
 	    <include file="$(find wolf_navigation_utils)/launch/wolf_navigation.launch">
-  		<arg name="robot_name"        value="go1"/>
+                <arg name="robot_name"        value="$(arg robot_name)"/>
+                <arg name="robot_model"       value="go1"/>
 		<arg name="robot_params"      value="$(find go1_navigation)/params"/>
 		<arg name="world_name"        value="$(arg world_name)" />
     		<arg name="global_frame"      value="$(arg global_frame)"/>
@@ -86,8 +91,8 @@
     		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="type"              value="$(arg type)" />
-    		<arg name="task_gui"          value="$(arg task_gui)" />
-    		<arg name="rviz_gui"          value="$(arg rviz_gui)" />
+                <arg name="task_gui"          value="true" />
+                <arg name="rviz_gui"          value="false" />
 		<arg name="cmd_vel_topic"     value="/cmd_vel" />
 		<arg name="launch_controller" value="false" />
                 <arg name="launch_odometry"   value="false" /> <!-- Let's use Go1 odometry -->

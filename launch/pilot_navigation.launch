@@ -2,6 +2,7 @@
 <launch>
 
     <!--  Set arguments -->
+    <arg name="robot_name"    default="" />
     <arg name="nimbro"        default="false" />
     <arg name="target"        default="10.8.0.2" />
     <arg name="camera_topic"  default="" />
@@ -10,21 +11,25 @@
     
     <!-- Launch navigation with nimbro network -->
     <include file="$(find wolf_navigation_utils)/launch/wolf_pilot_navigation.launch" if="$(arg nimbro)">
-    	    <remap from="/joint_states" to="/go1/joint_states"/>
+            <remap from="joint_states" to="$(arg robot_name)/joint_states"/>
     	    <arg name="rviz_gui"       value="false" />
             <arg name="target"         value="$(arg target)" />
+            <arg name="robot_name"     value="$(arg robot_name)" />
             <arg name="robot_model"    value="go1" />
-            <arg name="camera_topic"  value="$(arg camera_topic)" />
-            <arg name="nimbro_params" value="$(arg nimbro_params)" />
+            <arg name="camera_topic"   value="$(arg camera_topic)" />
+            <arg name="nimbro_params"  value="$(arg nimbro_params)" />
     </include>
-    
-    <!-- Convert joint states to TF transforms for rviz, etc -->
-    <!--<node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="log">
-        <remap from="/joint_states" to="/go1/joint_states"/>
-    </node>-->
 
     <!-- Rviz -->
-    <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)" />
+    <group if="$(eval robot_name != '')">
+        <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)" ns="$(arg robot_name)"/>
+    </group>
+    <group if="$(eval robot_name == '')">
+        <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)" >
+            <remap from="/move_base_simple/goal" to="/$(arg robot_name)/wolf_navigation/goto/pose"/>
+            <remap from="/initialpose" to="/$(arg robot_name)/initialpose"/>
+        </node>
+    </group>
     
     <node name="image_view" pkg="image_view" type="image_view" output="screen" if="$(eval camera_topic != '')">
     	<remap from="image" to="$(arg camera_topic)" />
