@@ -1,11 +1,11 @@
 Panels:
   - Class: rviz/Displays
-    Help Height: 0
+    Help Height: 78
     Name: Displays
     Property Tree Widget:
       Expanded: ~
       Splitter Ratio: 0.5
-    Tree Height: 402
+    Tree Height: 170
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -23,7 +23,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: LaserScan
   - Class: wolf_rviz_plugin/WolfPanel
     Name: WolfPanel
 Preferences:
@@ -61,17 +61,62 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        d435_bottom_screw_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_color_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_left_ir_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_left_ir_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        d435_right_ir_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_right_ir_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        front_rail:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         lf_foot:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
         lf_hip:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lf_hip_shoulder:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -96,11 +141,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        lh_hip_shoulder:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         lh_lowerleg:
           Alpha: 1
           Show Axes: false
@@ -111,17 +151,26 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        lidar_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        pack_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rear_rail:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         rf_foot:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
         rf_hip:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rf_hip_shoulder:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -146,31 +195,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        rh_hip_shoulder:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         rh_lowerleg:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
         rh_upperleg:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rslidar:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        rslidar-16:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rslidar-16_base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -212,12 +242,21 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        trunk:
+        trunk_imu:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        velodyne:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        trunk_imu:
+        velodyne_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        velodyne_mount:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -238,7 +277,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: GlobalMap
-      Topic: map
+      Topic: move_base/global_costmap/costmap
       Unreliable: false
       Use Timestamp: false
       Value: true
@@ -252,6 +291,128 @@ Visualization Manager:
       Unreliable: false
       Use Timestamp: false
       Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: ExploredMap
+      Topic: map
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: LaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 5
+      Size (m): 0.009999999776482582
+      Style: Points
+      Topic: scan
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: Velodyne
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Points
+      Topic: velodyne_points
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: RSLidar
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Points
+      Topic: rslidar_points
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 1.9961439371109009
+        Min Value: -0.019330501556396484
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: Depth
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Points
+      Topic: /d435/depth/points
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -301,6 +462,57 @@ Visualization Manager:
       Unreliable: false
       Value: true
     - Alpha: 1
+      Arrow Length: 0.30000001192092896
+      Axes Length: 0.30000001192092896
+      Axes Radius: 0.009999999776482582
+      Class: rviz/PoseArray
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.07000000029802322
+      Head Radius: 0.029999999329447746
+      Name: ParticleCloud
+      Queue Size: 10
+      Shaft Length: 0.23000000417232513
+      Shaft Radius: 0.009999999776482582
+      Shape: Arrow (Flat)
+      Topic: particlecloud
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 25; 255; 0
+      Enabled: true
+      Name: Footprint
+      Queue Size: 10
+      Topic: move_base/local_costmap/footprint
+      Unreliable: false
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: wolf_navigation/exploration/frontiers
+      Name: Frontiers
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz/TF
+      Enabled: false
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+      Marker Alpha: 1
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: true
+      Tree:
+        {}
+      Update Interval: 0
+      Value: false
+    - Alpha: 1
       Axes Length: 1
       Axes Radius: 0.10000000149011612
       Class: rviz/Pose
@@ -308,22 +520,30 @@ Visualization Manager:
       Enabled: true
       Head Length: 0.30000001192092896
       Head Radius: 0.10000000149011612
-      Name: Goal
+      Name: GoToGoal
       Queue Size: 10
       Shaft Length: 1
       Shaft Radius: 0.05000000074505806
       Shape: Axes
-      Topic: move_base/current_goal
+      Topic: wolf_navigation/goto/pose
       Unreliable: false
       Value: true
     - Class: rviz/InteractiveMarkers
       Enable Transparency: true
       Enabled: true
-      Name: WayPoints
+      Name: Waypoints
       Show Axes: false
       Show Descriptions: true
       Show Visual Aids: false
       Update Topic: waypoints/update
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: waypoints/connections
+      Name: WaypointConnections
+      Namespaces:
+        {}
+      Queue Size: 100
       Value: true
     - Class: rviz/InteractiveMarkers
       Enable Transparency: true
@@ -338,34 +558,22 @@ Visualization Manager:
       Blocks: 3
       Class: rviz_plugins/AerialMapDisplay
       Draw Behind: false
-      Enabled: true
+      Enabled: false
       Map Frame: map
       Map transform type: NavSatFix Messages and Map Frame
       Name: AerialMapDisplay
-      Object URI: https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png
+      Object URI: https://tile.openstreetmap.org/{z}/{x}/{y}.png
       Topic: gps/fix
       UTM Frame: utm
       UTM Zone: -1
-      Value: true
+      Value: false
       XY Reference: <NavSatFix Message>
       Z Offset: 0
       Z Reference: <NavSatFix Message>
       Zoom: 16
-    - Class: rviz/Image
-      Enabled: false
-      Image Topic: /yolact_inference
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Detection
-      Normalize Range: true
-      Queue Size: 2
-      Transport Hint: raw
-      Unreliable: false
-      Value: false
   Enabled: true
   Global Options:
-    Background Color: 48; 48; 48
+    Background Color: 0; 0; 0
     Default Light: true
     Fixed Frame: map
     Frame Rate: 30
@@ -393,7 +601,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 9.515804290771484
+      Distance: 12.246112823486328
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -401,27 +609,25 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.565007746219635
-        Y: -0.32268407940864563
-        Z: 3.536534070968628
+        X: 0.6505586504936218
+        Y: 0.2669743597507477
+        Z: 0.4378642737865448
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.0053976774215698
+      Pitch: 0.580397367477417
       Target Frame: <Fixed Frame>
-      Yaw: 0.060410406440496445
+      Yaw: 5.1886420249938965
     Saved: ~
 Window Geometry:
-  Detection:
-    collapsed: false
   Displays:
     collapsed: false
   Height: 1016
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000002180000035ffc0200000009fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afc0000003d000001ec000000e60100001cfa000000010100000002fb000000120044006500740065006300740069006f006e0100000000ffffffff0000007800fffffffb000000100044006900730070006c0061007900730100000000000002180000015600fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb000000120057006f006c006600500061006e0065006c010000022f0000016d0000009e00ffffff000000010000010f0000035ffc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d0000035f000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000073800000039fc0100000002fb0000000800540069006d0065010000000000000738000003bc00fffffffb0000000800540069006d00650100000000000004500000000000000000000004050000035f00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001560000035afc0200000009fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d00000135000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb000000120057006f006c006600500061006e0065006c01000001780000021f0000009e00ffffff000000010000010f0000035afc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d0000035a000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007380000003efc0100000002fb0000000800540069006d0065010000000000000738000003bc00fffffffb0000000800540069006d00650100000000000004500000000000000000000004c70000035a00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
