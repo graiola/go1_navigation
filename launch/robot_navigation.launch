@@ -25,6 +25,14 @@
     <!-- Remap battery state -->
     <remap from="battery_state" to="$(arg robot_name)/battery_state"/>
 
+    <!-- Export the tf_prefix -->
+    <group if="$(eval robot_name != '/')">
+        <param name="tf_prefix" value="$(arg robot_name)"/>
+    </group>
+    <group if="$(eval robot_name == '/')">
+        <param name="tf_prefix" value=""/>
+    </group>
+
     <!-- Send the robot urdf to parameter server -->
     <include file="$(find wolf_description_utils)/launch/upload.launch">
         <arg name="sensors"      value="true" />
@@ -38,12 +46,20 @@
     <!-- Activate rslidar driver (new version) -->
     <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" output="screen" if="$(arg launch_lidar)">
       <param name="config_path" value=""/>
+      <remap from="/rslidar_points" to="/$(arg robot_name)/rslidar_points"/>
     </node>
 
     <!-- Convert joint states to TF transforms for rviz, etc -->
-    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="log">
-        <remap from="joint_states" to="$(arg robot_name)/joint_states"/>
+    <group if="$(eval robot_name != '')">
+    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" ns="$(arg robot_name)">
+        <remap from="/joint_states"        to="/$(arg robot_name)/joint_states"/>
     </node>
+    </group>
+    <group if="$(eval robot_name == '')">
+    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+        <remap from="/joint_states"        to="/$(arg robot_name)/joint_states"/>
+    </node>
+    </group>
 
     <!-- Launch navigation with nimbro network -->
     <group if="$(arg nimbro)">
@@ -66,7 +82,7 @@
     		<arg name="type"              value="$(arg type)" />
                 <arg name="task_gui"          value="true" />
                 <arg name="rviz_gui"          value="false" />
-		<arg name="cmd_vel_topic"     value="/cmd_vel" />
+		<arg name="cmd_vel_topic"     value="cmd_vel" />
 		<arg name="launch_controller" value="false" />
                 <arg name="launch_odometry"   value="false" /> <!-- Let's use Go1 odometry -->
 		<arg name="target"            value="$(arg target)" />
@@ -93,7 +109,7 @@
     		<arg name="type"              value="$(arg type)" />
                 <arg name="task_gui"          value="true" />
                 <arg name="rviz_gui"          value="false" />
-		<arg name="cmd_vel_topic"     value="/cmd_vel" />
+		<arg name="cmd_vel_topic"     value="cmd_vel" />
 		<arg name="launch_controller" value="false" />
                 <arg name="launch_odometry"   value="false" /> <!-- Let's use Go1 odometry -->
 	    </include>
