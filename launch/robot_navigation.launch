@@ -16,6 +16,7 @@
     <arg name="gps_topic"      default="gps/fix" />
     <arg name="depth_topic"    default="" />
     <arg name="robot_params"   default="$(find go1_navigation)/params" />
+    <arg name="map_file"       default="$(find go1_navigation)/maps/$(arg world_name).yaml" />
 
     <!-- Nimbro args -->
     <arg name="nimbro"         default="false" />
@@ -78,7 +79,7 @@
                 <arg name="gps_topic"         value="$(arg gps_topic)" />
                 <arg name="depth_topic"       value="$(arg depth_topic)" />
                 <arg name="camera_topic"      value="$(arg camera_topic)" />
-    		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
+                <arg name="map_file"          value="$(arg map_file)" />
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="type"              value="$(arg type)" />
                 <arg name="task_gui"          value="true" />
@@ -105,7 +106,7 @@
                 <arg name="imu_topic"         value="$(arg imu_topic)"/>
                 <arg name="gps_topic"         value="$(arg gps_topic)" />
                 <arg name="depth_topic"       value="$(arg depth_topic)" />
-    		<arg name="map_file"          value="$(find go1_navigation)/maps/$(arg world_name).yaml" />
+                <arg name="map_file"          value="$(arg map_file)" />
     		<arg name="mapping"           value="$(arg mapping)" />
     		<arg name="type"              value="$(arg type)" />
                 <arg name="task_gui"          value="true" />
