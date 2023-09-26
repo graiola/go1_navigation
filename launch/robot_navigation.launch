@@ -19,6 +19,11 @@
     <arg name="robot_params"   default="$(find go1_navigation)/params" />
     <arg name="map_file"       default="$(find go1_navigation)/maps/$(arg world_name).yaml" />
 
+    <!-- Move base args -->
+    <arg name="local_planner"  default="teb_local_planner/TebLocalPlannerROS" />
+    <arg name="global_planner" default="navfn/NavfnROS"/>
+    <arg name="cmd_vel_topic"  default="cmd_vel" />
+
     <!-- Nimbro args -->
     <arg name="nimbro"         default="false" />
     <arg name="target"         default="10.8.0.1" />
@@ -86,7 +91,9 @@
                 <arg name="slope_filter"      value="$(arg slope_filter)" />
                 <arg name="task_gui"          value="true" />
                 <arg name="rviz_gui"          value="false" />
-		<arg name="cmd_vel_topic"     value="cmd_vel" />
+		<arg name="cmd_vel_topic"     value="$(arg cmd_vel_topic)" />
+		<arg name="local_planner"     value="$(arg local_planner)" />
+		<arg name="global_planner"    value="$(arg global_planner)" />
 		<arg name="launch_controller" value="false" />
                 <arg name="launch_odometry"   value="false" /> <!-- Let's use Go1 odometry -->
 		<arg name="target"            value="$(arg target)" />
@@ -114,7 +121,9 @@
                 <arg name="slope_filter"      value="$(arg slope_filter)" />
                 <arg name="task_gui"          value="true" />
                 <arg name="rviz_gui"          value="false" />
-		<arg name="cmd_vel_topic"     value="cmd_vel" />
+		<arg name="cmd_vel_topic"     value="$(arg cmd_vel_topic)" />
+		<arg name="local_planner"     value="$(arg local_planner)" />
+		<arg name="global_planner"    value="$(arg global_planner)" />
 		<arg name="launch_controller" value="false" />
                 <arg name="launch_odometry"   value="false" /> <!-- Let's use Go1 odometry -->
 	    </include>
