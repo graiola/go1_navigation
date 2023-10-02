@@ -17,6 +17,7 @@
     <arg name="gps_topic"      default="gps/fix" />
     <arg name="depth_topic"    default="" />
     <arg name="robot_params"   default="$(find go1_navigation)/params" />
+    <arg name="task_params"    default="$(find go1_navigation)/params/tasks" />
     <arg name="map_file"       default="$(find go1_navigation)/maps/$(arg world_name).yaml" />
 
     <!-- Move base args -->
@@ -75,6 +76,7 @@
                 <arg name="robot_name"        value="$(arg robot_name)"/>
                 <arg name="robot_model"       value="go1"/>
 		<arg name="robot_params"      value="$(arg robot_params)"/>
+                <arg name="task_params"       value="$(arg task_params)"/>
 		<arg name="world_name"        value="$(arg world_name)" />
     		<arg name="global_frame"      value="$(arg global_frame)"/>
     		<arg name="odom_frame"        value="$(arg odom_frame)"/>
@@ -106,6 +108,7 @@
                 <arg name="robot_name"        value="$(arg robot_name)"/>
                 <arg name="robot_model"       value="go1"/>
 		<arg name="robot_params"      value="$(arg robot_params)"/>
+                <arg name="task_params"       value="$(arg task_params)"/>
 		<arg name="world_name"        value="$(arg world_name)" />
     		<arg name="global_frame"      value="$(arg global_frame)"/>
     		<arg name="odom_frame"        value="$(arg odom_frame)"/>
