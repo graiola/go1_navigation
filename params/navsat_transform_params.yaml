@@ -1,7 +1,8 @@
 frequency: 10
 delay: 0.1
-# magnetic_declination_radians: https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml
-# yaw_offset: 1.5707963 # pi/2
+#https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml
+magnetic_declination_radians: 1.5707963
+yaw_offset: 1.5707963 # pi/2
 zero_altitude: true
 publish_filtered_gps: true
 use_odometry_yaw: false

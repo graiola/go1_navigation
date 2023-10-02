@@ -19,15 +19,16 @@
             <arg name="camera_topic"   value="$(arg camera_topic)" />
             <arg name="nimbro_params"  value="$(arg nimbro_params)" />
     </include>
-
+    
     <!-- Rviz -->
     <group if="$(eval robot_name != '')">
-        <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)" ns="$(arg robot_name)"/>
+        <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="$(eval '-d '+find('go1_navigation')+'/rviz/go1_nav.rviz' + ' -f '+arg('robot_name')+'/map')" if="$(arg rviz_gui)" ns="$(arg robot_name)">
+            <remap from="/move_base_simple/goal" to="/$(arg robot_name)/wolf_navigation/goto/pose"/>
+            <remap from="/initialpose" to="/$(arg robot_name)/initialpose"/>
+        </node>
     </group>
     <group if="$(eval robot_name == '')">
         <node name="pilot_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find go1_navigation)/rviz/go1_nav.rviz" if="$(arg rviz_gui)" >
-            <remap from="/move_base_simple/goal" to="/$(arg robot_name)/wolf_navigation/goto/pose"/>
-            <remap from="/initialpose" to="/$(arg robot_name)/initialpose"/>
         </node>
     </group>
     
