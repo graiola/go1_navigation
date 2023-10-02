@@ -1,23 +1,19 @@
 topics:
-- name: "/waypoints"
-  compress: false
-  rate: 10.0
-- name: "/home"
-  compress: false
-  rate: 10.0
-- name: "/waypoints/feedback"
+- name: "/$(arg robot_name)/waypoints"
   compress: true
   rate: 10.0
-- name: "/home/feedback"
+- name: "/$(arg robot_name)/home"
   compress: true
   rate: 10.0
-- name: "/move_base_simple/goal"
+- name: "/$(arg robot_name)/waypoints/feedback"
   compress: true
   rate: 10.0
-- name: "/initialpose"
+- name: "/$(arg robot_name)/home/feedback"
   compress: true
   rate: 10.0
-- name: "/clicked_point"
+- name: "/$(arg robot_name)/wolf_navigation/goto/pose"
   compress: true
   rate: 10.0
-
+- name: "/$(arg robot_name)/initialpose"
+  compress: true
+  rate: 10.0

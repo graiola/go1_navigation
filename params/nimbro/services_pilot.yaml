@@ -15,5 +15,7 @@ services:
    type: rt_gui/Double
  - name: /wolf_panel/add_bool
    type: rt_gui/Bool
+ - name: /wolf_panel/add_check
+   type: rt_gui/Check
  - name: /wolf_panel/feedback_label
    type: rt_gui/Text
