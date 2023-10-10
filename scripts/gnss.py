@@ -22,8 +22,6 @@ if __name__ == '__main__':
 
 	rospy.init_node("gps_fix_pub")
 
-	gps_pub = rospy.Publisher("gps/fix", NavSatFix, queue_size=10)
-
 	tf_prefix = rospy.get_param('~tf_prefix','')
 
 	# Check and fix tf_prefix
@@ -33,6 +31,8 @@ if __name__ == '__main__':
 		tf_prefix = tf_prefix + "/"
 
 	print('Launch gps_fix_pub with tf_prefix="%s"' % (tf_prefix))
+	
+	gps_pub = rospy.Publisher(tf_prefix+"gps/fix", NavSatFix, queue_size=10)
 
 	send_command('AT')
 
