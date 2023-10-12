@@ -23,6 +23,6 @@ install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
   PATTERN ".svn" EXCLUDE)
 
-catkin_install_python(PROGRAMS scripts/gnss.py scripts/rslidar_ns.py
+catkin_install_python(PROGRAMS scripts/gnss.py scripts/rslidar_ns.py scripts/mavgps.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
