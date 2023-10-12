@@ -32,7 +32,7 @@ yaw : Yaw in earth frame from north # cdeg
 """
 
 # Check https://docs.px4.io/main/en/companion_computer/pixhawk_companion.html
-device = "/dev/ttyPixhawk"
+device = "/dev/serial/by-id/usb-Auterion_PX4_FMU_v6X.x_0-if00"
 baudrate = 57600
 
 if __name__ == '__main__':
@@ -62,7 +62,8 @@ if __name__ == '__main__':
 
         if msg is not None:
             print('Latitude: %s, Longitude: %s, Altitude: %s' % (msg.lat, msg.lon, msg.alt))
-            gps_msg.latitude = float(msg.lat) / 100
-            gps_msg.longitude = float(msg.lon) / 100
-            gps_msg.altitude = float(msg.alt)
+            gps_msg.latitude = float(msg.lat) / 10000000
+            gps_msg.longitude = float(msg.lon) / 10000000
+            gps_msg.altitude = float(msg.alt) / 1000
             gps_msg.header.stamp = rospy.Time.now()
+            gps_pub.publish(gps_msg)
