@@ -31,9 +31,6 @@
     <arg name="camera_topic"   default="" />
     <arg name="nimbro_params"  default="$(find go1_navigation)/params/nimbro" />
 
-    <!-- Remap battery state -->
-    <remap from="battery_state" to="$(arg robot_name)/battery_state"/>
-
     <!-- Export the tf_prefix -->
     <group if="$(eval robot_name != '/')">
         <param name="tf_prefix" value="$(arg robot_name)"/>
