@@ -57,14 +57,18 @@
 
     <!-- Convert joint states to TF transforms for rviz, etc -->
     <group if="$(eval robot_name != '')">
-    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" ns="$(arg robot_name)">
-        <remap from="/joint_states"        to="/$(arg robot_name)/joint_states"/>
-    </node>
+	    <node name="rslidar_remapper" pkg="tf_remapper_cpp" type="tf_remap">
+		<rosparam param="mappings">[{old: rslidar, new: $(arg robot_name)/rslidar}]</rosparam>
+	    </node>
+	    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" ns="$(arg robot_name)">
+		<remap from="/joint_states"        to="/$(arg robot_name)/joint_states"/>
+	    </node>
     </group>
+    
     <group if="$(eval robot_name == '')">
-    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
-        <remap from="/joint_states"        to="/$(arg robot_name)/joint_states"/>
-    </node>
+	    <node name="go1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+		<remap from="/joint_states"        to="/$(arg robot_name)/joint_states"/>
+	    </node>
     </group>
 
     <!-- Launch navigation with nimbro network -->
